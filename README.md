@@ -1,5 +1,5 @@
 # Minishell: follow us in the hell!
-One of the first graphical projects at 42 school, fract-ol generates beautiful fractals from the complex numbers of an iterative mathematical construct. A fractal is a fragmented geometrical figure that infinitely repeats itself at smaller scales. This project uses the school's graphical library, MiniLibX.
+Minishell is the second project of the Unix branch at 42. It's a minimum viable version of a real shell. The main goal is to have a good understanding of process creation and synchronisation using the C programmming language. This project will introduce you to the world of shells, which provide a convenient text interface to interact with your system. Shells might seem very easy to understand but have very specific and defined behaviour in almost every single case, most of which will need to be handled properly.
 
 # Author
 [iragusa](https://github.com/IvanaRagusa) && [graiolo](https://github.com/graiolo)
