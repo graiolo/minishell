@@ -57,10 +57,13 @@ int	ft_builtin(t_shell *shell, char **tab)
 void	ft_pipe_built(t_shell *shell, t_cmd *ptr, t_pipe p)
 {
 	p.fd_built = open(".字", O_RDWR | O_CREAT | O_TRUNC, 0644);
+	p.fd_built_in = open(".字x", O_RDWR | O_CREAT | O_TRUNC, 0644);
 	if (p.i > 0)
 		close (shell->fd[p.i - 1][0]);
 	if (ptr->red_in != 0)
 		dup2(ptr->red_in, STDIN_FILENO);
+	if (ptr && ptr->next && ptr->next->red_in == 0)
+		ptr->next->red_in = p.fd_built;
 	if (ptr->red_out != 1)
 		dup2(ptr->red_out, STDOUT_FILENO);
 	else if (p.i != p.pipes)
@@ -73,4 +76,5 @@ void	ft_pipe_built(t_shell *shell, t_cmd *ptr, t_pipe p)
 	dup2(shell->std_out, STDOUT_FILENO);
 	dup2(shell->std_in, STDIN_FILENO);
 	close(p.fd_built);
+	close(p.fd_built_in);
 }

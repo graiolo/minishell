@@ -90,6 +90,7 @@ t_cmd	*ft_pipe(t_shell *shell, t_cmd *ptr, char **env)
 			ptr = ptr->next;
 	}
 	unlink(".字");
+	unlink(".字x");
 	ft_free_fd(p.pipes, shell->fd);
 	return (ptr);
 }
