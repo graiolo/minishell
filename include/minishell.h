@@ -126,6 +126,7 @@ typedef struct s_pipe
 	int		pipes;
 	int		i;
 	int		fd_built;
+	int		fd_built_in;
 }	t_pipe;
 
 extern int	g_status;
