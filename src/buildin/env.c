@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: graiolo <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: graiolo <graiolo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 16:49:58 by graiolo           #+#    #+#             */
-/*   Updated: 2023/06/03 20:43:59 by graiolo          ###   ########.fr       */
+/*   Updated: 2023/08/19 16:17:36 by graiolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@ void	ft_env(t_shell *shell, char **arg)
 		return ;
 	}
 	while (shell->env[i] != NULL)
-		ft_printf("%s\n", shell->env[i++]);
+	{
+		if (ft_strchr(shell->env[i], '='))
+			ft_printf("%s\n", shell->env[i]);
+		i++;
+	}
 	g_status = 0;
 }
