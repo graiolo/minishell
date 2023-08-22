@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: graiolo <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: graiolo <graiolo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 00:27:00 by graiolo           #+#    #+#             */
-/*   Updated: 2023/06/24 17:16:52 by graiolo          ###   ########.fr       */
+/*   Updated: 2023/08/22 19:55:16 by graiolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ void	ft_get_token(t_shell *shell, char *str)
 	ft_free_mat(mat);
 	ft_char_cmd(shell->token);
 	ft_clean_type(shell, shell->token);
+	ft_heredoc(shell);
 	ft_find_redir(shell);
 	ft_char_cmd_rvs(shell->token);
 	ft_operator(shell, shell->token);

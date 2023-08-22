@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: graiolo <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: graiolo <graiolo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 11:16:18 by graiolo           #+#    #+#             */
-/*   Updated: 2023/06/24 14:49:26 by graiolo          ###   ########.fr       */
+/*   Updated: 2023/08/22 17:18:29 by graiolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	ft_printf_list(t_token *token)
 	printf("input: ");
 	while (token != NULL)
 	{
-		printf("%s ", token->str);
+		printf("%s(%d) ", token->str, token->type);
 		token = token->next;
 	}
 	printf("\n");

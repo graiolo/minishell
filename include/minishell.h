@@ -6,7 +6,7 @@
 /*   By: graiolo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 18:28:18 by graiolo           #+#    #+#             */
-/*   Updated: 2023/06/24 14:33:09 by graiolo          ###   ########.fr       */
+/*   Updated: 2023/08/22 19:56:43 by graiolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,6 +195,10 @@ void	ft_read_tok(t_shell *shell);
 t_cmd	*ft_add_cmd_back(t_shell *shell, t_cmd **head, char **line, t_token *t);
 t_cmd	*ft_add_cmd_help(t_shell *shell, char **tab, int i);
 t_token	*ft_norm_fist(t_shell *shell, t_token *tok, char ***args);
+
+/* file: heredoc.c */
+
+void    ft_heredoc(t_shell *shell);
 
 /* file: getenv.c */
 

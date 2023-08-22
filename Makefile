@@ -25,6 +25,7 @@ SRC		= 	./src/main.c\
 			./src/parsing/operator.c\
 			./src/parsing/expansion.c\
 			./src/parsing/types.c\
+			./src/parsing/heredoc.c\
 			./src/parsing/token.c ./src/parsing/token_clean.c\
 			./src/parsing/wildcard.c\
 			./src/parsing/wildcard_utils.c\
