@@ -17,18 +17,20 @@ void	ft_heredoc(t_shell *shell)
 	t_token	*local;
 	t_token	*new;
 
-	if (shell->token)
+	local = shell->token;
+	while (local)
 	{
-		if (shell->token->type == IAPPEND && shell->token->next
-			&& shell->token->next->type == IOFILE)
+		if (local->type == IAPPEND)
 		{
-			local = shell->token->next;
-			if (local->next)
+			while (local->next && ft_is_types(local->next, "WITOAH") == 1)
+				local = local->next;
+			if (local->next && ft_is_types(local->next, "PERC") != 1)
 			{
-				new = ft_new_node(";", COMMA);
+				new = ft_new_node("|", PIPE);
 				new->next = local->next;
 				local->next = new;
 			}
 		}
+		local = local->next;
 	}
 }

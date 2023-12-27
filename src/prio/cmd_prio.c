@@ -100,7 +100,7 @@ void	ft_prio(t_shell *shell)
 
 	token = shell->token;
 	start = token;
-	if (ft_is_types(token, "PERCL") == 1)
+	if (ft_is_types(token, "TPERCL") == 1)
 		return ;
 	while (token != NULL)
 	{

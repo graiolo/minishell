@@ -12,6 +12,24 @@
 
 #include "./../../include/minishell.h"
 
+void	ft_clean_null_cmd(t_token *token)
+{
+	while(token)
+	{
+		if(ft_is_types(token, "PERC"))
+		{
+			token = token->next;
+			if (ft_is_type(token, EMPTY))
+			{
+				token->str = strdup("''");
+				token->type = 1;
+			}
+		}
+		if (token)
+			token = token->next;
+	}
+}
+
 void	ft_clean_type(t_shell *shell, t_token *token)
 {
 	while (token != NULL)

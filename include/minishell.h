@@ -161,6 +161,8 @@ void	ft_get_token(t_shell *shell, char *str);
 void	ft_clean_type(t_shell *shell, t_token *token);
 void	ft_clean_cmd(t_shell *shell, char **cmd);
 void	ft_clean_arg(t_shell *shell, char **str);
+void	ft_clean_null_cmd(t_token *token);
+void	ft_set_heredoc_at_begin(t_shell *shell);
 
 /* file: list.c */
 
@@ -173,6 +175,7 @@ void	ft_free_list(t_token **head);
 
 /* file: list_utils.c */
 
+void ft_rotate_list(t_token **token, t_token *start, t_token *end, t_token *pivot);
 void	ft_join_list(t_token **cmd, t_token **red, t_token **new);
 void	ft_update_prev(t_token *token);
 void	ft_printf_list(t_token *token);

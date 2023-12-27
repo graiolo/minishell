@@ -77,12 +77,12 @@ t_cmd	*ft_pipe(t_shell *shell, t_cmd *ptr, char **env)
 	p = init_pip(shell, ptr, p);
 	while (++p.i < (p.pipes + 1))
 	{
-		if (ptr && !ft_strcmp(ptr->tab[0], "exit") && (ptr->next || ptr->prev))
+		if (ptr && ptr->tab && !ft_strcmp(ptr->tab[0], "exit") && (ptr->next || ptr->prev))
 			ptr = ptr->next;
 		ft_dup_redir(ptr);
 		if (ptr && ptr->tab && (ft_strcmp(ptr->tab[0], "<<") == 0))
 			ft_here_doc(shell, ptr);
-		else if (ptr && ft_is_builtin(ptr->tab[0]) == 1)
+		else if (ptr && ptr->tab && ft_is_builtin(ptr->tab[0]) == 1)
 			ft_pipe_built(shell, ptr, p);
 		else if (ptr)
 			ft_norm_pipe(shell, p, ptr, env);

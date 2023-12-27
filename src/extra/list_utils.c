@@ -12,6 +12,19 @@
 
 #include "./../../include/minishell.h"
 
+void ft_rotate_list(t_token **token, t_token *start, t_token *end, t_token *pivot)
+{
+	t_token *tmp;
+
+	tmp = end->next;
+	if (*token != start)
+		start->prev->next = pivot;
+	else
+		*token = pivot;
+	end->next = start;
+	pivot->prev->next = tmp;
+}
+
 void	ft_join_list(t_token **cmd, t_token **red, t_token **new)
 {
 	t_token	*tmp;

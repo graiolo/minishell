@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: graiolo <graiolo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: everonel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 00:27:00 by graiolo           #+#    #+#             */
-/*   Updated: 2023/08/22 19:55:16 by graiolo          ###   ########.fr       */
+/*   Updated: 2023/11/30 22:29:56 by everonel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,18 @@ void	ft_find_redir(t_shell *shell)
 	tmp = shell->token;
 	while (tmp != NULL)
 	{
+		if (ft_is_types(tmp, "T") == 1)
+			if (ft_add_back(&cmd, tmp->str) == NULL)
+				ft_error(shell, MALL_ERR, 0, NULL);
 		if (ft_is_types(tmp, " DXLB") == 1)
 			if (ft_add_back(&cmd, tmp->str) == NULL)
 				ft_error(shell, MALL_ERR, 0, NULL);
-		if (ft_is_types(tmp, "WITOAH") == 1)
-			if (ft_add_back(&red, tmp->str) == NULL)
+		if (ft_is_types(tmp, "WIOAH") == 1) {
+			if (tmp->prev->type != IAPPEND && ft_add_back(&red, tmp->str) == NULL)
 				ft_error(shell, MALL_ERR, 0, NULL);
+			if (tmp->prev->type == IAPPEND && ft_add_back(&cmd, tmp->str) == NULL)
+				ft_error(shell, MALL_ERR, 0, NULL);
+		}
 		if (tmp->next == NULL || ft_is_types(tmp->next, "PERC") == 1)
 			ft_join_list(&cmd, &red, &new);
 		if (ft_is_types(tmp, "PERC") == 1)
@@ -80,6 +86,29 @@ static void	ft_char_cmd_rvs(t_token *token)
 	}
 }
 
+void ft_set_heredoc_at_begin(t_shell *shell) {
+	t_token *tmp = shell->token;
+	t_token *start = shell->token;
+	t_token *stop = NULL;
+	t_token *target = NULL;
+
+	while (tmp != NULL) {
+		if (tmp->type == IAPPEND)
+			target = tmp;
+		if (ft_is_types(tmp, "PERC") == 1) {
+			if (target != NULL && start != target) {
+				ft_rotate_list(&shell->token, start, stop, target);
+			}
+			target = NULL;
+			start = tmp->next;
+		}
+		stop = tmp;
+		tmp = tmp->next;
+	}
+	if (target != NULL && start != target)
+		ft_rotate_list(&shell->token, start, stop, target);
+}
+
 void	ft_get_token(t_shell *shell, char *str)
 {
 	int		i;
@@ -101,9 +130,12 @@ void	ft_get_token(t_shell *shell, char *str)
 	ft_free_mat(mat);
 	ft_char_cmd(shell->token);
 	ft_clean_type(shell, shell->token);
+	ft_set_heredoc_at_begin(shell);
 	ft_heredoc(shell);
 	ft_find_redir(shell);
 	ft_char_cmd_rvs(shell->token);
 	ft_operator(shell, shell->token);
 	ft_prio(shell);
+	ft_clean_null_cmd(shell->token);
+	//ft_printf_list(shell->token);
 }

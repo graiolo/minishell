@@ -88,7 +88,7 @@ t_cmd	*ft_redir_in(t_token *tok, t_cmd *cmd)
 
 void	ft_dup_redir(t_cmd *cmd)
 {
-	if (cmd && strncmp(cmd->tab[0], "cd", 3))
+	if (cmd && cmd->tab && strncmp(cmd->tab[0], "cd", 3))
 	{
 		if (cmd->red_out != 1)
 			dup2(cmd->red_out, STDOUT_FILENO);
